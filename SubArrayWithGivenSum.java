@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class SubArrayWithGivenSum {
     public static void main(String[] args) {
@@ -44,6 +42,36 @@ public class SubArrayWithGivenSum {
         }
 
         return list;
+
+    }
+
+    public static void subArraySum(int [] items,int target){
+        Map<Integer,Integer>pairMap = new HashMap<>();
+        int currentSum = 0;
+        int start = 0;
+        int end = 0;
+        boolean isSubArrayFound = false;
+        for (int i = 0; i < items.length; i++) {
+            currentSum = currentSum+items[i];
+            if (currentSum==target){
+                end = i;
+                isSubArrayFound = true;
+                break;
+            }
+            if (pairMap.containsKey(currentSum-target)){
+                start = pairMap.get(currentSum-target);
+                end = i;
+                isSubArrayFound = true;
+                break;
+
+            }
+            pairMap.put(currentSum-target,i);
+        }
+        if (isSubArrayFound){
+
+        }else {
+            System.out.println("SubArray Not Found");
+        }
 
     }
 
